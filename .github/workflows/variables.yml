@@ -1,0 +1,15 @@
+name: Desafio 3 - Variáveis do GitHub
+
+on: [push, pull_request]
+
+jobs:
+  show-vars:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Exibir informações do contexto GitHub
+        run: |
+          echo "📌 Nome do repositório: ${{ github.repository }}"
+          echo "📌 Branch atual: ${{ github.ref }}"
+          echo "📌 Autor do commit: ${{ github.actor }}"
+          echo "📌 SHA do commit: ${{ github.sha }}"
