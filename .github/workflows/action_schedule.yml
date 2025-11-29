@@ -1,0 +1,41 @@
+name: 'Tarefas Agendadas'
+
+# Agenda para executar todo dia às 2h da manhã (horário de Brasília)
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # a cada 30 minutos
+  # Permite execução manual pelo GitHub Actions
+  workflow_dispatch:
+
+jobs:
+  manutencao-diaria:
+    name: Executar Tarefas de Manutenção
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar status do servidor
+        run: |
+          echo "🕒 Iniciando tarefas agendadas - $(date)"
+          echo "🔍 Verificando status dos serviços..."
+          # Comandos de verificação de serviços aqui
+
+      - name: Limpar arquivos temporários
+        run: |
+          echo "🧹 Limpando arquivos temporários..."
+          # Comandos de limpeza aqui
+
+      - name: Backup do banco de dados
+        run: |
+          echo "💾 Iniciando backup do banco de dados..."
+          # Comandos de backup aqui
+          echo "✅ Backup concluído com sucesso!"
+
+      - name: Notificação de conclusão
+        run: |
+          echo "🏁 Tarefas de manutenção concluídas!"
+          echo "📊 Relatório gerado em: $(date)"
+          # Comando para enviar notificação
+
+      - name: Delay para visualização (remover em produção)
+        if: github.event_name == 'workflow_dispatch'
+        run: sleep 15

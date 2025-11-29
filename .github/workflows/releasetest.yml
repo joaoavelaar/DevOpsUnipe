@@ -1,0 +1,25 @@
+name: workflowRelease
+
+on:
+  push:
+    branches: [ release* ]
+  pull_request:
+    branches: [ release*  ]
+  schedule:
+    - cron: '*/30 * * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Compilando o Projeto
+        run: |
+          echo "🔨 Compilando o projeto Maven..."
+          echo "Se essa build falhar, é só culpar o Hibernate! (brincadeira... ou não) 😅"
+
+      - name: Compilar projeto
+        run: echo "compilando projeto"
+
+      - name: Etapa final
+        run: echo "Step Executado com sucesso"
